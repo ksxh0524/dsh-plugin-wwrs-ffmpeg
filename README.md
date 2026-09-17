@@ -4,7 +4,7 @@ Local media processing DSH plugin (open source): probe, transcode, concat, slice
 
 ## Status
 
-W0 shell: mount layer (`src/cordis.ts`), guard shell, and standard gates are green. Tool implementations land in W1.
+W1 done: mount layer (`src/cordis.ts`), write guard, and all seven tools are live with real ffmpeg/ffprobe execution.
 
 ## Install
 
@@ -29,7 +29,9 @@ Missing binaries fail loud with three ways out; never silently degrade.
 
 ## Tools (W1)
 
-`media_probe` / `media_transcode` / `media_concat` / `media_slice` / `media_mux_voice` / `media_burn_subtitles`.
+`media_probe` / `media_transcode` / `media_concat` / `media_slice` / `media_mux_voice` / `media_burn_subtitles` / `media_extract_audio`.
+
+All paths are workspace-relative (absolute or escaping paths fail loud). Every writing tool takes `overwrite?: boolean` (default false; false + existing output → success `{skipped:true}` without running, never silently overwritten). `media_transcode` accepts `extraArgs: string[]`, spliced verbatim into argv (caller beware: it can override any encoding switch). Timeouts: probe 60s, transcode-family 30min; caller cancellation (`exec.signal`) is forwarded to the child process.
 
 ## License
 

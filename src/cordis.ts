@@ -1,10 +1,12 @@
-/** cordis.ts —— dsh-plugin-wwrs-ffmpeg 挂载适配层（W0 空壳；官方插件形：default={name,inject,apply} 对象）。
+/** cordis.ts —— dsh-plugin-wwrs-ffmpeg 挂载适配层（W1：七工具注册 + 写保护守卫）。
  *
- * 注册面（W1 落地）：media_probe / media_transcode / media_concat / media_slice / media_mux_voice /
- * media_burn_subtitles → ctx.tools.register；写保护守卫 → ctx.tools.guard（谓词真源见 lib/guard-predicate.ts）。
+ * 注册面：media_probe / media_transcode / media_concat / media_slice / media_mux_voice /
+ * media_burn_subtitles / media_extract_audio → ctx.tools.register（真源见 ./tools.ts）；
+ * 写保护守卫 → ctx.tools.guard（谓词真源见 lib/guard-predicate.ts）。
  * 行名与包名对齐（dsh-plugin-wwrs-ffmpeg）；改名必同步 package.json 与 cordis.patch.yml。
  */
 
+import { createFfmpegTools } from "./tools.ts";
 import { registerFfmpegGuard } from "./guard.ts";
 import type { HostContext } from "./lib/host.ts";
 
@@ -22,8 +24,14 @@ export type CordisConfig = {
 
 export function apply(ctx: HostContext, config?: CordisConfig) {
   const unregister = registerFfmpegGuard(ctx);
+  const tools = createFfmpegTools({ workspace: config?.workspace, ffmpegBin: config?.ffmpegBin, ffprobeBin: config?.ffprobeBin, ctx });
+  let registered = 0;
+  for (const tool of tools) {
+    ctx.tools?.register(tool);
+    registered += 1;
+  }
   ctx.logger?.info?.(
-    `[dsh-plugin-wwrs-ffmpeg] shell on（workspace=${config?.workspace ?? "(env WWRS_WORKSPACE/中性锚探测)"} guard=${typeof unregister === "function" ? "on" : "no-hook"}；工具在 W1 落地）`,
+    `[dsh-plugin-wwrs-ffmpeg] shell on（workspace=${config?.workspace ?? "(env WWRS_WORKSPACE/中性锚探测)"} tools=${registered} guard=${typeof unregister === "function" ? "on" : "no-hook"}）`,
   );
   return { unregister };
 }
