@@ -1,0 +1,10 @@
+# dsh-plugin-wwrs-ffmpeg layer：本地媒体处理（W0 空壳；工具在 W1 落地）。
+# config.workspace：项目根（绝对路径）；空串 = 按 env WWRS_WORKSPACE > 中性锚探测。
+# config.ffmpegBin / config.ffprobeBin：可执行绝对路径；空串 = env WWRS_FFMPEG_BIN > 包内 .bin > PATH。
+- insert:
+    - id: wwrs-ffmpeg
+      name: dsh-plugin-wwrs-ffmpeg
+      config:
+        workspace: ""
+        ffmpegBin: ""
+        ffprobeBin: ""
