@@ -1,6 +1,6 @@
 # dsh-plugin-wwrs-ffmpeg
 
-Local media processing DSH plugin (open source): probe, transcode, concat, slice, mux voice, and burn subtitles via local `ffmpeg`/`ffprobe`. Zero runtime dependencies.
+Local media processing DSH plugin (open source): probe, transcode, concat, slice, mux voice, and burn subtitles via local `ffmpeg`/`ffprobe`. Sole runtime dependency is @deepseek-ai/dsh-tools (defineTool DSL).
 
 ## Status
 

@@ -1,6 +1,6 @@
 # dsh-plugin-wwrs-ffmpeg
 
-本地媒体处理 DSH 插件（开源）：经本地 `ffmpeg`/`ffprobe` 做探测、转码、拼接、切片、配音混流与烧字幕。零运行时依赖。
+本地媒体处理 DSH 插件（开源）：经本地 `ffmpeg`/`ffprobe` 做探测、转码、拼接、切片、配音混流与烧字幕。唯一运行时依赖是 @deepseek-ai/dsh-tools（defineTool DSL）。
 
 ## 状态
 
