@@ -33,6 +33,10 @@ Missing binaries fail loud with three ways out; never silently degrade.
 
 All paths are workspace-relative (absolute or escaping paths fail loud). Every writing tool takes `overwrite?: boolean` (default false; false + existing output → success `{skipped:true}` without running, never silently overwritten). `media_transcode` accepts `extraArgs: string[]`, spliced verbatim into argv (caller beware: it can override any encoding switch). Timeouts: probe 60s, transcode-family 30min; caller cancellation (`exec.signal`) is forwarded to the child process.
 
+## Verify
+
+Run `pnpm check` (prettier check + `tsc --noEmit` + `node --test tests/*.test.ts`).
+
 ## License
 
 MIT.
