@@ -2,7 +2,7 @@
   "name": "dsh-plugin-wwrs-ffmpeg",
   "version": "0.1.0",
   "type": "module",
-  "description": "Local media processing DSH plugin (open source): probe/transcode/concat/slice/mux/burn-subtitles via local ffmpeg/ffprobe. Zero runtime dependencies; binaries resolved config > env > package .bin > PATH.",
+  "description": "Local media processing DSH plugin (open source): probe/transcode/concat/slice/mux/burn-subtitles via local ffmpeg/ffprobe. Sole runtime dependency is @deepseek-ai/dsh-tools (defineTool DSL); binaries resolved config > env > package .bin > PATH.",
   "keywords": [
     "dsh",
     "deepseek-harness",

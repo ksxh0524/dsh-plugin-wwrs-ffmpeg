@@ -46,7 +46,7 @@ function unresolvableText(basename: string, configKey: string, envName: string):
     `${basename} 可执行未解析（config.${configKey} / env ${envName} / 包内 node_modules/.bin/${basename} / PATH 四级皆空）。` +
     `三条出路：① 宿主 profile patch 行 config.${configKey} 注入 ${basename} 可执行文件绝对路径；` +
     `② 设环境变量 ${envName}=<绝对路径>；` +
-    `③ 跑 pnpm install（装完包内 node_modules/.bin/${basename} 就位，或确认 ${basename} 在 PATH 中）。`
+    `③ 预留位（当前无二进制依赖提供 ${basename}，包内 node_modules/.bin/${basename} 恒 miss，跑 pnpm install 也不会就位，请确认 ${basename} 在 PATH 中）。`
   );
 }
 
